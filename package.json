@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/nda86/price_db#readme",
   "dependencies": {
+    "line-by-line": "^0.1.4",
+    "n-readlines": "^0.2.2",
     "sqlite3": "^3.1.0"
   }
 }
