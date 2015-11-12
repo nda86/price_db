@@ -8,17 +8,27 @@ var lineByLine = require('n-readlines');
 var liner = new lineByLine('./goods101.txt');
 
 db.serialize(function() {
-	db.run("TRUNCATE TABLE ANALOG;"  
-			+ "TRUNCATE TABLE ASPECT;" 
-			+ "TRUNCATE TABLE BARCODE;" 
-			+ "TRUNCATE TABLE IMAGES;" 
-			+ "TRUNCATE TABLE IMPLEMENTSHEME;" 
-			+ "TRUNCATE TABLE IntBarcs;" 
-			+ "TRUNCATE TABLE REMAIN;" 
-			+ "TRUNCATE TABLE SHEMA;" 
-			+ "TRUNCATE TABLE SPRT;" 
-			+ "TRUNCATE TABLE SPUTNIK;" 
-			+ "TRUNCATE TABLE VALUESHEMA;");
+	db.run("DELETE FROM BARCODE;");
+	db.run("DELETE FROM SPRT;");
+	db.run("DELETE FROM ASPECT;");
+	db.run("DELETE FROM IMAGES;");
+	db.run("DELETE FROM IMPLEMENTSHEME;");
+	db.run("DELETE FROM IntBarcs;");
+	db.run("DELETE FROM REMAIN;");
+	db.run("DELETE FROM SPUTNIK;");
+	db.run("DELETE FROM VALUESHEMA;");
+	db.run("DELETE FROM SHEMA;");
+	db.run("DELETE FROM ANALOG;");
+			// + "DELETE FROM ASPECT;" 
+			// + "DELETE FROM BARCODE;" 
+			// + "DELETE FROM IMAGES;" 
+			// + "DELETE FROM IMPLEMENTSHEME;" 
+			// + "DELETE FROM IntBarcs;" 
+			// + "DELETE FROM REMAIN;" 
+			// + "DELETE FROM SHEMA;" 
+			// + "DELETE FROM SPRT;" 
+			// + "DELETE FROM SPUTNIK;" 
+			// + "DELETE FROM VALUESHEMA;");
 // 	db.run("CREATE TABLE if not exists goods (art TEXT, code TEXT, name TEXT, price TEXT)");
 // 	var stmt = db.prepare("INSERT INTO BARCODE (BARCODE) VALUES (?)");
 
@@ -37,7 +47,7 @@ db.serialize(function() {
 // 	// console.log(line);
 // }
 
-var stmt1 = db.prepare("INSERT INTO BARCODE (BARCODE) VALUES (?)");
+// var stmt1 = db.prepare("INSERT INTO BARCODE (BARCODE) VALUES (?)");
 var stmt2 = db.prepare("INSERT INTO SPRT (NAME, PRICE) VALUES (?, ?)");
 
 while (line = liner.next()) {
@@ -51,13 +61,13 @@ while (line = liner.next()) {
 	// res[2] - code
 	// res[3] - name
 	// res[4] - price
-	stmt1.run(res[2]);
+	// stmt1.run(res[2]);
 	stmt2.run(res[3],res[4]);
 
 	// console.log(line);
 }
 
-	stmt1.finalize();
+	// stmt1.finalize();
 	stmt2.finalize();
 });
 
